@@ -180,3 +180,253 @@
 @media (max-width: 600px) {
   .finisher__grid { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* ========================================
+   FINISHER ITEMS — avec image
+   ======================================== */
+
+.finisher__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.finisher-item {
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.finisher-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.finisher-item__img-wrapper {
+  width: 100%;
+  height: 240px;
+  /* 
+    Fond blanc (ou gris très léger) pour que l'image
+    sur fond transparent soit bien mise en valeur
+  */
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem; /* Espace autour de l'image pour qu'elle ne colle pas aux bords */
+}
+
+.finisher-item__img {
+  width: 100%;
+  height: 100%;
+  /*
+    object-fit: contain = l'image est affichée en entier,
+    sans rognage, en respectant ses proportions.
+    C'est le bon choix pour des photos de produits.
+    (cover = remplit et rogne / contain = affiche tout)
+  */
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+/* Zoom léger au survol — fonctionne aussi avec contain */
+.finisher-item:hover .finisher-item__img {
+  transform: scale(1.08);
+}
+
+.finisher-item__body {
+  padding: 1.5rem;
+  /* Petite ligne de séparation visuelle entre image et texte */
+  border-top: 1px solid #f0f0f0;
+}
+
+.finisher-item__body h3 {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-dark);
+}
+
+/* ========================================
+   GRILLE OPTIONS
+   ======================================== */
+.finisher__options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ========================================
+   BANDEAU DEADLINE
+   ======================================== */
+.options__deadline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #fff8e1, #fff3cd);
+  border-left: 4px solid #f59e0b;
+  border-radius: 0.5rem;
+  padding: 0.9rem 1.25rem;
+  margin: 1.25rem 0 2rem;
+  font-size: 0.95rem;
+  color: #92400e;
+}
+
+.options__deadline-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   CARTE OPTION — version finale fusionnée
+   ======================================== */
+.option-item {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 1rem;
+  overflow: visible;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  /* Pas de height, pas de min-height ici */
+}
+
+.option-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,114,132,0.15);
+}
+
+/* ========================================
+   BADGE PRÉCOMMANDE
+   ======================================== */
+.option-item__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--color-primary, #017284);
+  color: #fff !important; /* Force le blanc contre tout héritage parasite */
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  z-index: 2; /* Au-dessus de l'image */
+}
+
+
+/* ========================================
+   IMAGE WRAPPER
+   overflow: hidden + border-radius appliqués
+   uniquement ici pour clipper l'image dans
+   les coins arrondis, sans affecter le badge
+   ======================================== */
+.option-item__img-wrapper {
+  width: 100%;
+  height: 220px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
+}
+
+.option-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.option-item:hover .option-item__img {
+  transform: scale(1.08);
+}
+
+/* ========================================
+   BODY — texte descriptif
+   Pas de flex: 1 ici — on utilise margin-top: auto
+   sur le footer pour le pousser en bas sans
+   créer un espace vide géant entre le texte et le prix
+   ======================================== */
+.option-item__body {
+  padding: 1.25rem 1.25rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-top: 1px solid #f0f0f0;
+  /* Pas de flex: 1 ici */
+}
+
+.option-item__body strong {
+  font-size: 1.05rem;
+  color: var(--color-dark);
+}
+
+/* Mention du designer en italique */
+.option-item__designer {
+  font-size: 0.82rem;
+  color: var(--color-primary, #017284);
+  font-style: italic;
+}
+
+/*
+  CORRECTION : on cible uniquement les span directs
+  qui ne sont pas .option-item__designer,
+  pour ne pas écraser la couleur de .option-tag
+  qui est lui aussi un <span> dans le footer
+*/
+.option-item__body > span:not(.option-item__designer) {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+}
+
+/* ========================================
+   FOOTER — prix + tag
+   margin-top: auto remplace flex: 1 sur le body :
+   le footer se colle en bas naturellement
+   ======================================== */
+.option-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  /* margin-top: auto seulement si les cartes ont la même hauteur dans une grid */
+  margin-top: auto;
+}
+
+/* Prix — sombre, grand, lisible */
+.option-item__price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  font-family: var(--font-title);
+  border-bottom: 3px solid var(--color-primary, #017284);
+  padding-bottom: 2px;
+  line-height: 1; /* Empêche la hauteur de ligne d'ajouter de l'espace */
+}
+
+/*
+  Tag "PRÉCOMMANDE"
+  !important sur color en dernier recours :
+  protège contre tout héritage parasite de span générique
+*/
+.option-tag {
+  background: var(--color-primary, #017284);
+  color: #fff !important;
+  border: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

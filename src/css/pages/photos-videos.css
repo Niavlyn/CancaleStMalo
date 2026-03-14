@@ -197,3 +197,62 @@
 @media (max-width: 600px) {
   .galerie__grid { grid-template-columns: 1fr; }
 }
+
+/* ========================================
+   GALERIE — CTA lien externe
+   ======================================== */
+.galerie__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.galerie__cta-hint {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+}
+
+/* Style des codes inline */
+.galerie__cta-hint code {
+  background: #f0f0f0;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+  color: var(--color-primary);
+}
+
+/* ========================================
+   VIDÉO — embed YouTube responsive
+   ======================================== */
+.videos__grid--single {
+  max-width: 800px;  /* On centre et on limite la largeur */
+  margin: 0 auto;
+}
+
+.video-embed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.video-embed iframe {
+  width: 100%;
+  /* 
+    aspect-ratio remplace l'ancienne technique padding-top: 56.25%
+    Beaucoup plus propre et lisible
+  */
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.video-embed__caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  font-style: italic;
+}
+

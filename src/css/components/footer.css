@@ -10,51 +10,123 @@
   padding: 4rem 0 0;
 }
 
-/* Grille 4 colonnes */
+/* =============================================
+   GRILLE : 3 colonnes sur desktop
+   1.5fr pour la marque, 1fr pour les socials,
+   1fr pour les liens utiles
+   ============================================= */
 .footer__container {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr;
   gap: 3rem;
   padding-bottom: 3rem;
+  align-items: start; /* Chaque colonne s'aligne en haut */
 }
 
-/* Logo et description */
+/* =============================================
+   COLONNE 1 : Logo + infos
+   ============================================= */
 .footer__logo {
-  height: 100px;        /* taille raisonnable pour un footer */
-  width: auto;         /* proportion préservée              */
-  display: block;      /* supprime l'espace fantôme inline  */
+  height: 100px;
+  width: auto;
+  display: block;
   object-fit: contain;
   margin-bottom: 1rem;
 }
-.footer__logo span { color: var(--color-primary); }
 
 .footer__brand p {
   font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 0.4rem;
 }
-.footer__brand a:hover { color: var(--color-primary); }
 
-/* Colonnes de liens */
+.footer__brand a:hover { 
+  color: var(--color-primary); 
+}
+
+/* =============================================
+   TITRES DES COLONNES 2 ET 3
+   Même style cohérent pour "Suivez-nous"
+   et "Liens utiles"
+   ============================================= */
+.footer__social-col h4,
 .footer__links h4 {
   font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-white);
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary); /* Titre en bleu pour le distinguer */
   margin-bottom: 1rem;
 }
 
-.footer__links ul { list-style: none; }
-.footer__links li { margin-bottom: 0.5rem; }
-.footer__links a {
-  font-size: 0.9rem;
-  transition: color var(--transition);
+/* =============================================
+   COLONNE 2 : Réseaux sociaux en pills
+   ============================================= */
+.footer__socials {
+  display: flex;
+  flex-wrap: wrap; /* Retour à la ligne si pas assez de place */
+  gap: 0.6rem;
 }
-.footer__links a:hover { color: var(--color-primary); }
 
-/* Barre du bas */
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px; /* Forme pill */
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.footer__social:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.footer__social svg {
+  flex-shrink: 0; /* L'icône ne se compresse jamais */
+}
+
+/* =============================================
+   COLONNE 3 : Liens utiles + PDF règlement
+   ============================================= */
+.footer__links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer__links a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color var(--transition), padding-left var(--transition);
+}
+
+.footer__links a:hover {
+  color: var(--color-primary);
+  padding-left: 4px; /* Micro-décalage au survol */
+}
+
+/* Lien PDF avec icône alignée */
+.footer__pdf {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* =============================================
+   BARRE DU BAS
+   ============================================= */
 .footer__bottom {
   border-top: 1px solid rgba(255,255,255,0.08);
   padding: 1.5rem 0;
@@ -63,10 +135,30 @@
   opacity: 0.55;
 }
 
-/* Responsive */
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+/* Tablette : 2 colonnes */
 @media (max-width: 900px) {
-  .footer__container { grid-template-columns: 1fr 1fr; }
+  .footer__container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* La marque prend toute la largeur en haut */
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
 }
+
+/* Mobile : 1 colonne */
 @media (max-width: 480px) {
-  .footer__container { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer__brand {
+    grid-column: auto; /* Réinitialise le span tablette */
+  }
 }
