@@ -69,7 +69,8 @@
     </nav>
 
     <!-- PAGE HERO -->
-    <section class="page-hero">
+    <section class="page-hero" style="--hero-bg: url('/src/assets/victoire.jpg')">
+
       <div class="page-hero__bg"></div>
       <div class="page-hero__overlay"></div>
       <div class="page-hero__content container">
@@ -108,38 +109,42 @@
     </section>
 
     <!-- ========================================
-         RÉSULTATS 2025
-         ======================================== -->
-    <section class="resultats-edition section">
-      <div class="container">
-        <span class="section__tag">Dernière édition</span>
-        <h2 class="section__title">Résultats 2025 — 36ᵉ édition</h2>
+     RÉSULTATS 2025
+     ======================================== -->
+<section class="resultats-edition section">
+  <div class="container">
+    <span class="section__tag">Dernière édition</span>
+    <h2 class="section__title">Résultats 2025 — 36ᵉ édition</h2>
 
-        <div class="resultats-edition__grid">
-          <div class="resultats-action" data-animate="fade-left">
-            <div class="resultats-action__icon">📄</div>
-            <div>
-              <h3>Résultats officiels PDF</h3>
-              <p>Téléchargez les résultats complets de l'édition 2025 au format PDF.</p>
-              <a href="#" class="btn btn--primary">Télécharger les résultats</a>
-            </div>
-          </div>
+    <div class="resultats-edition__grid">
 
-          <div class="resultats-action" data-animate="fade-right">
-            <div class="resultats-action__icon">🏅</div>
-            <div>
-              <h3>Podiums 2025</h3>
-              <p>Retrouvez les podiums hommes, femmes et catégories de l'édition 2025.</p>
-              <a href="#" class="btn btn--secondary">Voir les podiums</a>
-            </div>
-          </div>
+      <!-- 
+        On remplace le PDF par un lien vers Chronowest
+        qui héberge les résultats officiels en ligne
+      -->
+      <div class="resultats-action" data-animate="fade-left">
+        <div class="resultats-action__icon">🏃</div>
+        <div>
+          <h3>Résultats officiels 2025</h3>
+          <p>Consultez les résultats complets de la 36ᵉ édition sur Chronowest.</p>
+          <a 
+            href="https://chronowest.fr/resultats/semi-cancale-saint-malo-2025/" 
+            class="btn btn--primary"
+            target="_blank"
+          >
+            Voir les résultats
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- ========================================
-         ARCHIVES
-         ======================================== -->
+<!-- ========================================
+     ARCHIVES
+     Chaque édition pointe vers son lien Chronowest.
+     Les années sans lien connu affichent "Prochainement".
+     ======================================== -->
     <section class="archives section section--gray">
       <div class="container">
         <span class="section__tag">Historique</span>
@@ -147,39 +152,60 @@
         <p class="archives__intro">36 éditions de passion, d'effort et d'émotion sur la Côte d'Émeraude.</p>
 
         <div class="archives__grid">
+
+          <!-- 2025 — lien disponible -->
           <div class="archive-item" data-animate="fade-up">
             <span class="archive-item__year">2025</span>
             <span class="archive-item__num">36ᵉ édition</span>
-            <a href="#" class="archive-item__link">Résultats →</a>
+            <a 
+              href="https://chronowest.fr/resultats/semi-cancale-saint-malo-2025/" 
+              class="archive-item__link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Résultats →</a>
           </div>
-          <div class="archive-item" data-animate="fade-up" style="animation-delay:0.05s">
+
+          <!-- 2024 — lien disponible -->
+          <div class="archive-item" data-animate="fade-up" style="animation-delay:.05s">
             <span class="archive-item__year">2024</span>
             <span class="archive-item__num">35ᵉ édition</span>
-            <a href="#" class="archive-item__link">Résultats →</a>
+            <a 
+              href="https://chronowest.fr/resultats/cancale-saint-malo-2024/" 
+              class="archive-item__link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Résultats →</a>
           </div>
-          <div class="archive-item" data-animate="fade-up" style="animation-delay:0.1s">
+
+          <!-- 2023 — lien disponible -->
+          <div class="archive-item" data-animate="fade-up" style="animation-delay:.1s">
             <span class="archive-item__year">2023</span>
             <span class="archive-item__num">34ᵉ édition</span>
-            <a href="#" class="archive-item__link">Résultats →</a>
+            <a 
+              href="https://chronowest.fr/resultats/semi-cancale-saint-malo-2023/" 
+              class="archive-item__link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Résultats →</a>
           </div>
-          <div class="archive-item" data-animate="fade-up" style="animation-delay:0.15s">
+
+          <!-- 2022 — lien disponible -->
+          <div class="archive-item" data-animate="fade-up" style="animation-delay:.15s">
             <span class="archive-item__year">2022</span>
             <span class="archive-item__num">33ᵉ édition</span>
-            <a href="#" class="archive-item__link">Résultats →</a>
+            <a 
+              href="https://chronowest.fr/resultats/cancale-saint-malo-2022/" 
+              class="archive-item__link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Résultats →</a>
           </div>
-          <div class="archive-item" data-animate="fade-up" style="animation-delay:0.2s">
-            <span class="archive-item__year">2021</span>
-            <span class="archive-item__num">32ᵉ édition</span>
-            <a href="#" class="archive-item__link">Résultats →</a>
-          </div>
-          <div class="archive-item" data-animate="fade-up" style="animation-delay:0.25s">
-            <span class="archive-item__year">2019</span>
-            <span class="archive-item__num">31ᵉ édition</span>
-            <a href="#" class="archive-item__link">Résultats →</a>
-          </div>
+
+
         </div>
       </div>
     </section>
+
 
     <!-- FOOTER -->
     <footer class="footer">
