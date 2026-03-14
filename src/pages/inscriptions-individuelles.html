@@ -29,14 +29,12 @@
           <span></span><span></span><span></span>
         </button>
         <ul class="navbar__menu" id="navMenu">
-          <li class="navbar__item"><a href="/" class="navbar__link">Accueil</a></li>
           <li class="navbar__item navbar__item--dropdown">
             <a href="#" class="navbar__link navbar__link--dropdown">S'inscrire <span class="navbar__arrow">▾</span></a>
             <ul class="navbar__dropdown">
               <li><a href="/src/pages/inscriptions-individuelles.html">Inscriptions individuelles</a></li>
               <li><a href="/src/pages/challenge-entreprises.html">Challenge entreprises</a></li>
               <li><a href="/src/pages/dossards.html">Dossards</a></li>
-              <li><a href="/src/pages/dossards.html#justificatifs">Justificatifs d'inscription</a></li>
             </ul>
           </li>
           <li class="navbar__item navbar__item--dropdown">
@@ -71,7 +69,8 @@
     </nav>
 
     <!-- PAGE HERO -->
-    <section class="page-hero">
+    <section class="page-hero" style="--hero-bg: url('/src/assets/inscription_individuelles.jpg')">
+
       <div class="page-hero__bg"></div>
       <div class="page-hero__overlay"></div>
       <div class="page-hero__content container">
@@ -115,6 +114,37 @@
         <h2 class="section__title">Vagues de départ</h2>
         <p class="vagues__intro">Le départ est organisé en 8 vagues selon les chronos estimés. Les horaires sont indicatifs.</p>
 
+
+        <!-- ----------------------------------------
+        Encart Marcel Altenburg
+        Placé avant les vagues pour expliquer
+        la démarche scientifique derrière les sas
+        ---------------------------------------- -->
+        <div class="vagues__altenburg" data-animate="fade-up">
+          <div class="vagues__altenburg-icon">🔬</div>
+          <div class="vagues__altenburg-text">
+            <p>
+              Pour l'organisation de nos sas de départ, nous collaborons avec
+              <strong>Marcel Altenburg</strong>, Maître de conférences à la
+              Manchester Metropolitan University et expert mondial en sécurité des
+              foules. Créateur de l'algorithme <em>Start Right</em> — utilisé par
+              les plus grands marathons de la planète (London, Berlin, New York) —
+              il nous aide à optimiser la fluidité du départ et la sécurité de tous
+              les coureurs tout au long du parcours.
+            </p>
+            <!-- 
+              Deuxième phrase : choix assumé de l'organisation.
+              On l'explique comme une décision de sécurité, pas comme une contrainte.
+            -->
+            <p>
+              Dans cette même logique, nous avons fait le choix de <strong>ne pas distinguer hommes et femmes</strong> dans l'attribution des sas,
+              y compris pour les sas élite et préférentiels. Les chronos de référence sont identiques pour tous :
+              cela permet de <strong>limiter au maximum les différentiels de vitesse</strong> entre coureurs
+              d'un même sas, et donc de réduire significativement le risque de chutes en début de course.
+            </p>
+          </div>
+        </div>
+
         <div class="vagues__grid">
 
           <div class="vague-card vague-card--elite" data-animate="fade-up">
@@ -129,7 +159,6 @@
                 <li><span class="vague-dot"></span>Préférentiels : &lt; 1h30</li>
                 <li><span class="vague-dot"></span>Confirmés : &lt; 1h40</li>
               </ul>
-              <span class="vague-card__info">~1 200 coureurs</span>
             </div>
           </div>
 
@@ -221,13 +250,13 @@
           <div class="temps-card" data-animate="fade-left">
             <div class="temps-card__icon">🏃</div>
             <h3>10 km</h3>
-            <p class="temps-card__time">1h20 max</p>
+            <p class="temps-card__time">1h25 max</p>
             <p>Les coureurs n'ayant pas franchi le 10 km dans ce délai seront retirés de la course.</p>
           </div>
           <div class="temps-card" data-animate="fade-right">
             <div class="temps-card__icon">🏁</div>
             <h3>Arrivée</h3>
-            <p class="temps-card__time">2h45 max</p>
+            <p class="temps-card__time">3h00 max</p>
             <p>Temps maximum pour terminer la course. Au-delà, le dossard est retiré et le coureur monte dans le véhicule balai.</p>
           </div>
         </div>
@@ -238,6 +267,8 @@
         </div>
       </div>
     </section>
+
+    
 
     <!-- ========================================
          BOURSE AUX DOSSARDS
@@ -264,13 +295,6 @@
                 <div>
                   <strong>Plateforme</strong>
                   <span>Revente uniquement via NextRun</span>
-                </div>
-              </li>
-              <li>
-                <span class="bourse__icon">💳</span>
-                <div>
-                  <strong>Remboursement</strong>
-                  <span>Hors frais de gestion NextRun</span>
                 </div>
               </li>
             </ul>

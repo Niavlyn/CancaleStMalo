@@ -18,8 +18,15 @@
 /* ---- Hero page secondaire ---- */
 .page-hero {
   position: relative;
-  height: 42vh;
-  min-height: 290px;
+
+  /*
+   * MODIFIÉ : on passe de 42vh à 58vh pour donner plus de place à la photo.
+   * Sur mobile on reste raisonnable avec min-height pour ne pas prendre
+   * trop d'écran avant le contenu.
+   */
+  height: 58vh;
+  min-height: 380px;
+
   display: flex;
   align-items: flex-end;
   padding-bottom: 3.5rem;
@@ -30,18 +37,32 @@
 .page-hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('/src/assets/photo_accueil.jpg');
+
+  /*
+   * On utilise une variable CSS pour l'image de fond.
+   * La valeur par défaut (fallback) est la photo générique.
+   * Chaque page peut surcharger cette variable via style="--hero-bg: url(...)"
+   * directement sur la balise <section class="page-hero">.
+   */
+  background-image: var(--hero-bg, url('/src/assets/photo_accueil.jpg'));
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 40%;
+  will-change: transform;
 }
 
 .page-hero__overlay {
   position: absolute;
   inset: 0;
+
+  /*
+   * MODIFIÉ : on rend l'overlay un peu moins opaque en haut
+   * pour laisser respirer la photo, et on renforce le bas
+   * pour que le texte reste lisible.
+   */
   background: linear-gradient(
     160deg,
-    rgba(1, 114, 132, 0.55) 0%,
-    rgba(13, 43, 48, 0.88) 100%
+    rgba(1, 114, 132, 0.40) 0%,    /* plus transparent en haut → photo visible */
+    rgba(13, 43, 48, 0.92) 100%    /* sombre en bas → texte lisible */
   );
 }
 
@@ -105,4 +126,16 @@
   border-color: #00e07a;
   box-shadow: 0 6px 24px rgba(25, 255, 147, 0.50);
   transform: translateY(-2px);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  /*
+   * Sur mobile on réduit légèrement pour ne pas
+   * enterrer le contenu sous le fold.
+   */
+  .page-hero {
+    height: 50vh;
+    min-height: 320px;
+  }
 }

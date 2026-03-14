@@ -281,3 +281,42 @@
 @media (max-width: 420px) {
   .vagues__grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   Encart Marcel Altenburg
+   Petit bloc discret mais valorisant, entre l'intro et les vagues
+   ============================================================ */
+.vagues__altenburg {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(63, 170, 180, 0.08);   /* teinte primaire très légère */
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0 2.5rem;                /* espace avant la grille des vagues */
+  max-width: 750px;
+}
+
+.vagues__altenburg-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.vagues__altenburg-text p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--color-text-muted, #555);
+  line-height: 1.6;
+}
+
+.vagues__altenburg-text strong {
+  color: var(--color-dark);
+}
+
+.vagues__altenburg-text em {
+  color: var(--color-primary);
+  font-style: normal;
+  font-weight: 600;
+}
