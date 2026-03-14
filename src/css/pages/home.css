@@ -7,7 +7,7 @@
 /* ---- HERO ---- */
 .hero {
   position: relative;
-  height: 100svh; /* svh = tient compte de la barre mobile */
+  height: 100svh;
   min-height: 600px;
   display: flex;
   align-items: center;
@@ -20,48 +20,118 @@
 /* Image de fond (parallax via JS) */
 .hero__bg {
   position: absolute;
-  inset: -10%; /* déborde pour permettre le parallax */
-  background-image: url('https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1600&q=80');
+  inset: -10%;
+  background-image: url('/src/assets/photo_accueil.jpg');
   background-size: cover;
   background-position: center;
-  will-change: transform; /* optimisation GPU */
+  will-change: transform;
 }
 
-/* Overlay sombre pour contraste du texte */
+/*
+ * Overlay avec dégradé directionnel.
+ * Plus transparent en haut (on voit le paysage)
+ * Plus sombre au centre/bas (le texte ressort)
+ * On a légèrement renforcé le centre par rapport
+ * à l'ancienne version (0.40 → 0.55)
+ */
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: var(--color-overlay);
+  background: linear-gradient(
+    to bottom,
+    rgba(1, 30, 36, 0.15) 0%,    /* haut   : paysage visible  */
+    rgba(1, 30, 36, 0.55) 45%,   /* centre : zone du texte    */
+    rgba(1, 30, 36, 0.70) 100%   /* bas    : ancrage visuel   */
+  );
 }
 
-/* Contenu texte centré */
+/*
+ * Contenu texte — on supprime complètement l'encadré
+ * (background, backdrop-filter, border-radius, border).
+ * Le text-shadow suffit largement à assurer la lisibilité.
+ * On garde juste le padding horizontal pour les petits écrans.
+ */
 .hero__content {
-  position: relative; /* passe au-dessus de l'overlay */
+  position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem;             /* retour au padding d'origine */
   animation: fadeInDown 1s ease both;
+  /* Plus de background, backdrop-filter, border-radius, border */
 }
 
-.hero__edition {
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+/*
+ * Badge "37ème édition" — remplace l'ancien .hero__edition simple.
+ * Affichage en ligne avec 2 traits décoratifs de chaque côté.
+ * C'est une technique classique appelée "ruled title" ou
+ * "text with decorative lines".
+ */
+.hero__edition-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/*
+ * Les traits horizontaux.
+ * flex: 1 les fait s'étirer pour remplir l'espace disponible.
+ * max-width évite qu'ils ne deviennent trop longs sur grand écran.
+ */
+.hero__edition-line {
+  display: block;
+  height: 1px;
+  width: 60px;              /* largeur fixe : plus prévisible que flex sur ce cas */
+  background: var(--color-primary);
+  opacity: 0.8;
+}
+
+/* Le texte de l'édition */
+.hero__edition-text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: 1rem;
+  white-space: nowrap;      /* évite le retour à la ligne inattendu */
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
+/*
+ * Le <sup> "ème" : on réduit sa taille et on ajuste
+ * son alignement vertical pour qu'il ne casse pas
+ * la hauteur de ligne.
+ */
+.hero__edition-text sup {
+  font-size: 0.6em;
+  vertical-align: super;
+  letter-spacing: 0;
+}
+
+
+/*
+ * Text-shadow en double couche :
+ * - couche 1 (flou court) : bord du texte net et contrasté
+ * - couche 2 (flou large) : halo doux autour du mot entier
+ * C'est la seule technique utilisée, sans encadré.
+ */
 .hero__title {
   font-family: var(--font-title);
   font-size: clamp(2.8rem, 8vw, 6rem);
   font-weight: 700;
   line-height: 1;
   margin-bottom: 1.5rem;
-  white-space: nowrap; /* évite le retour à la ligne inattendu */
+  white-space: nowrap;
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.35),
+    0 4px 50px rgba(0, 0, 0, 0.20);
 }
 
-.hero__title-accent { color: var(--color-primary); display: block; }
+.hero__title-accent {
+  color: var(--color-primary);
+  display: block;
+}
 
 .hero__date {
   font-family: var(--font-title);
@@ -69,13 +139,15 @@
   font-weight: 500;
   color: var(--color-primary);
   margin-bottom: 0.5rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero__subtitle {
   font-size: 1.05rem;
-  opacity: 0.85;
+  opacity: 0.90;
   margin-bottom: 2.5rem;
   letter-spacing: 0.05em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Boutons côte à côte */
@@ -116,7 +188,6 @@
   color: var(--color-white);
 }
 
-/* 4 colonnes séparées par une ligne */
 .stats__container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -135,7 +206,6 @@
 .stats__item:last-child { border-right: none; }
 .stats__item:hover { background: rgba(255,255,255,0.05); }
 
-/* Grand chiffre */
 .stats__number {
   font-family: var(--font-title);
   font-size: clamp(2rem, 5vw, 3.5rem);
@@ -153,8 +223,6 @@
 }
 
 /* ---- PRÉSENTATION ---- */
-
-/* 2 colonnes : texte + image */
 .presentation__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -167,7 +235,6 @@
   color: #3a5a60;
 }
 
-/* Badges (FFA, Côte d'Émeraude…) */
 .presentation__badges {
   display: flex;
   flex-wrap: wrap;
@@ -185,7 +252,6 @@
   color: var(--color-secondary);
 }
 
-/* Image arrondie avec ombre */
 .presentation__image img {
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
@@ -195,8 +261,6 @@
 }
 
 /* ---- INSCRIPTIONS ---- */
-
-/* 2 cartes côte à côte */
 .inscriptions__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -204,7 +268,6 @@
   margin-top: 1rem;
 }
 
-/* Carte inscription */
 .inscriptions__card {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
@@ -222,13 +285,11 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* Icône emoji en grand */
 .inscriptions__icon {
   font-size: 3rem;
   line-height: 1;
 }
 
-/* Titre de la carte */
 .inscriptions__card h3 {
   font-family: var(--font-title);
   font-size: 1.5rem;
@@ -236,7 +297,6 @@
   color: var(--color-white);
 }
 
-/* Label "Ouverture des inscriptions" */
 .inscriptions__date-label {
   font-size: 0.78rem;
   font-weight: 600;
@@ -245,23 +305,18 @@
   color: rgba(255,255,255,0.55);
 }
 
-/*
- * Date mise en avant.
- * font-size en rem forcé + !important pour
- * ne pas être écrasé par un style parent.
- */
 .inscriptions__date {
   font-family: var(--font-title);
-  font-size: 1.6rem !important; /* ← forcé car héritage pouvait écraser */
+  font-size: 1.6rem !important;
   font-weight: 700;
   color: var(--color-white);
   background: rgba(63, 170, 180, 0.25);
   padding: 0.6rem 1.5rem;
   border-radius: var(--border-radius);
   border-left: 4px solid var(--color-primary);
-  width: 100%;                 /* ← prend toute la largeur de la carte */
-  text-align: center;          /* ← centrage du texte */
-  display: block;              /* ← nécessaire pour text-align + width */
+  width: 100%;
+  text-align: center;
+  display: block;
 }
 
 .inscriptions__card > p {
@@ -278,7 +333,6 @@
   margin-top: 1rem;
 }
 
-/* Étapes avec points et lignes verticales */
 .step {
   display: flex;
   align-items: flex-start;
@@ -297,7 +351,6 @@
 .step__dot--start { background: var(--color-primary); border-color: var(--color-primary); }
 .step__dot--end   { background: var(--color-secondary); border-color: var(--color-secondary); }
 
-/* Ligne verticale entre les étapes */
 .step__line {
   width: 2px;
   height: 32px;
@@ -313,7 +366,6 @@
 .step__content strong { font-weight: 600; color: var(--color-dark); }
 .step__content span   { font-size: 0.85rem; color: var(--color-gray); }
 
-/* Image parcours */
 .parcours-apercu__image {
   position: relative;
 }
@@ -324,12 +376,9 @@
   object-fit: cover;
   max-height: 420px;
 }
-/* Bouton positionné sous l'image */
 .parcours-apercu__btn { margin-top: 1.25rem; }
 
 /* ---- PARTENAIRES ---- */
-
-/* Label de niveau (Club, Prestige…) */
 .partenaires__tier-label {
   font-family: var(--font-title);
   font-size: 0.85rem;
@@ -341,7 +390,6 @@
   margin: 2.5rem 0 1rem;
 }
 
-/* Grille de logos */
 .partenaires__grid {
   display: flex;
   flex-wrap: wrap;
@@ -350,7 +398,6 @@
   margin-bottom: 1rem;
 }
 
-/* Placeholder logo partenaire */
 .partenaire-logo {
   display: flex;
   align-items: center;
@@ -368,7 +415,6 @@
   transform: translateY(-3px);
 }
 
-/* Tailles différentes par niveau */
 .partenaires__grid--club        .partenaire-logo { min-width: 180px; min-height: 80px; }
 .partenaires__grid--prestige    .partenaire-logo { min-width: 140px; min-height: 65px; }
 .partenaires__grid--performance .partenaire-logo { min-width: 120px; min-height: 55px; }
@@ -386,7 +432,6 @@
   .stats__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
   .stats__item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
 
-  /* Sur mobile le titre hero peut wrapper */
   .hero__title { white-space: normal; font-size: clamp(1.8rem, 10vw, 3rem); }
   .hero__actions { flex-direction: column; align-items: center; }
 }

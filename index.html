@@ -119,41 +119,57 @@
          ======================================== -->
     <section class="hero" id="hero">
 
-      <!-- Image de fond (placeholder pour l'instant) -->
-      <div class="hero__bg" id="heroBg"></div>
+    <!-- Image de fond (parallax via JS) -->
+    <div class="hero__bg" id="heroBg"></div>
 
-      <!-- Overlay sombre pour lisibilité du texte -->
-      <div class="hero__overlay"></div>
+    <!-- Overlay sombre pour lisibilité du texte -->
+    <div class="hero__overlay"></div>
 
-      <!-- Contenu centré -->
-      <div class="hero__content">
-        <p class="hero__edition">37ᵉ édition</p>
+    <!-- Contenu centré -->
+    <div class="hero__content">
+
+        <!--
+        MODIFICATION : la 37ème édition devient un "badge" visuel
+        au lieu d'une simple ligne de texte.
+        On utilise une structure en 3 parties :
+        - un trait décoratif gauche
+        - le texte de l'édition
+        - un trait décoratif droit
+        -->
+        <div class="hero__edition-badge">
+        <span class="hero__edition-line"></span>
+        <span class="hero__edition-text">37<sup>ème</sup> édition</span>
+        <span class="hero__edition-line"></span>
+        </div>
+
         <h1 class="hero__title">
-          SEMI-MARATHON<br>
-          <span class="hero__title-accent">CANCALE</span>
-          <span class="hero__title-accent">SAINT-MALO</span>
+        SEMI-MARATHON<br>
+        <span class="hero__title-accent">CANCALE</span>
+        <span class="hero__title-accent">SAINT-MALO</span>
         </h1>
+
         <p class="hero__date">Dimanche 23 août 2026</p>
         <p class="hero__subtitle">
-          21,1 km · Côte d'Émeraude · 7 000 coureurs
+        21,1 km · Côte d'Émeraude · 7 000 coureurs
         </p>
 
         <!-- Boutons d'action -->
         <div class="hero__actions">
-          <a href="/src/pages/inscriptions-individuelles.html" class="btn btn--primary">
+        <a href="/src/pages/inscriptions-individuelles.html" class="btn btn--primary">
             Je m'inscris
-          </a>
-          <a href="/src/pages/parcours.html" class="btn btn--outline">
+        </a>
+        <a href="/src/pages/parcours.html" class="btn btn--outline">
             Découvrir le parcours
-          </a>
+        </a>
         </div>
-      </div>
 
-      <!-- Scroll indicator animé -->
-      <div class="hero__scroll-indicator">
+    </div>
+
+    <!-- Scroll indicator animé -->
+    <div class="hero__scroll-indicator">
         <span>Défiler</span>
         <div class="hero__scroll-arrow"></div>
-      </div>
+    </div>
 
     </section>
 
@@ -202,7 +218,7 @@
         <div class="presentation__image" data-animate="fade-right">
           <!-- Placeholder image - à remplacer par une vraie photo -->
           <img 
-            src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=800&q=80" 
+            src="/src/assets/photo_accueil.jpg" 
             alt="Coureurs sur la Côte d'Émeraude"
             loading="lazy"
           />
