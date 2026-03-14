@@ -31,40 +31,33 @@
  * Overlay avec dégradé directionnel.
  * Plus transparent en haut (on voit le paysage)
  * Plus sombre au centre/bas (le texte ressort)
- * On a légèrement renforcé le centre par rapport
- * à l'ancienne version (0.40 → 0.55)
  */
 .hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(1, 30, 36, 0.15) 0%,    /* haut   : paysage visible  */
-    rgba(1, 30, 36, 0.55) 45%,   /* centre : zone du texte    */
-    rgba(1, 30, 36, 0.70) 100%   /* bas    : ancrage visuel   */
+    rgba(1, 30, 36, 0.15) 0%,
+    rgba(1, 30, 36, 0.55) 45%,
+    rgba(1, 30, 36, 0.70) 100%
   );
 }
 
 /*
- * Contenu texte — on supprime complètement l'encadré
- * (background, backdrop-filter, border-radius, border).
- * Le text-shadow suffit largement à assurer la lisibilité.
- * On garde juste le padding horizontal pour les petits écrans.
+ * Contenu texte — sans encadré.
+ * Le text-shadow suffit pour la lisibilité.
  */
 .hero__content {
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 0 1.5rem;             /* retour au padding d'origine */
+  padding: 0 1.5rem;
   animation: fadeInDown 1s ease both;
-  /* Plus de background, backdrop-filter, border-radius, border */
 }
 
 /*
- * Badge "37ème édition" — remplace l'ancien .hero__edition simple.
- * Affichage en ligne avec 2 traits décoratifs de chaque côté.
- * C'est une technique classique appelée "ruled title" ou
- * "text with decorative lines".
+ * Badge "37ème édition" avec traits décoratifs
+ * de chaque côté — technique "ruled title".
  */
 .hero__edition-badge {
   display: flex;
@@ -74,34 +67,29 @@
   margin-bottom: 1.25rem;
 }
 
-/*
- * Les traits horizontaux.
- * flex: 1 les fait s'étirer pour remplir l'espace disponible.
- * max-width évite qu'ils ne deviennent trop longs sur grand écran.
- */
+/* Traits horizontaux de part et d'autre du texte */
 .hero__edition-line {
   display: block;
   height: 1px;
-  width: 60px;              /* largeur fixe : plus prévisible que flex sur ce cas */
+  width: 60px;
   background: var(--color-primary);
   opacity: 0.8;
 }
 
-/* Le texte de l'édition */
+/* Texte de l'édition — grossi avec clamp() */
 .hero__edition-text {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-primary);
-  white-space: nowrap;      /* évite le retour à la ligne inattendu */
+  white-space: nowrap;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 /*
- * Le <sup> "ème" : on réduit sa taille et on ajuste
- * son alignement vertical pour qu'il ne casse pas
- * la hauteur de ligne.
+ * Le <sup> "ème" : taille réduite pour ne pas
+ * casser la hauteur de ligne.
  */
 .hero__edition-text sup {
   font-size: 0.6em;
@@ -109,12 +97,10 @@
   letter-spacing: 0;
 }
 
-
 /*
- * Text-shadow en double couche :
- * - couche 1 (flou court) : bord du texte net et contrasté
- * - couche 2 (flou large) : halo doux autour du mot entier
- * C'est la seule technique utilisée, sans encadré.
+ * Titre principal — text-shadow en double couche :
+ * couche 1 (flou court) = bord net et contrasté
+ * couche 2 (flou large) = halo doux autour du mot
  */
 .hero__title {
   font-family: var(--font-title);
@@ -175,6 +161,7 @@
   opacity: 0.6;
   color: var(--color-white);
 }
+
 .hero__scroll-arrow {
   width: 2px;
   height: 40px;
@@ -242,6 +229,7 @@
   list-style: none;
   margin-top: 1.5rem;
 }
+
 .badge {
   padding: 0.4rem 1rem;
   background: var(--color-gray-light);
@@ -256,8 +244,8 @@
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
   width: 100%;
-  object-fit: cover;
-  max-height: 480px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* ---- INSCRIPTIONS ---- */
@@ -333,12 +321,63 @@
   margin-top: 1rem;
 }
 
+/*
+ * Bande dénivelé — 3 blocs (D+, D-, villes)
+ * séparés par des barres verticales légères.
+ */
+.parcours-apercu__denivele {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.denivele__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.denivele__icon {
+  font-size: 1.3rem;
+}
+
+.denivele__value {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.denivele__label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gray);
+}
+
+/* Séparateur vertical entre les 3 blocs dénivelé */
+.denivele__separator {
+  color: rgba(1, 114, 132, 0.25);
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+
+/* ---- ÉTAPES DU PARCOURS ---- */
 .step {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
 }
 
+/*
+ * Point neutre par défaut.
+ * Les variantes --start, --end, --city, --landmark
+ * modifient la couleur et la taille selon l'importance.
+ */
 .step__dot {
   width: 14px;
   height: 14px;
@@ -348,9 +387,40 @@
   flex-shrink: 0;
   margin-top: 5px;
 }
-.step__dot--start { background: var(--color-primary); border-color: var(--color-primary); }
-.step__dot--end   { background: var(--color-secondary); border-color: var(--color-secondary); }
 
+/* Départ : couleur primaire pleine */
+.step__dot--start {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Arrivée : couleur secondaire (bleu foncé) */
+.step__dot--end {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* Changement de ville : primaire, même taille que start */
+.step__dot--city {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  width: 14px;
+  height: 14px;
+}
+
+/*
+ * Point d'intérêt (ex: Pointe du Grouin, La Digue)
+ * Cercle vide (transparent) avec bordure primaire.
+ * Légèrement plus petit pour hiérarchiser visuellement.
+ */
+.step__dot--landmark {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  width: 10px;
+  height: 10px;
+}
+
+/* Ligne verticale reliant les étapes */
 .step__line {
   width: 2px;
   height: 32px;
@@ -366,6 +436,26 @@
 .step__content strong { font-weight: 600; color: var(--color-dark); }
 .step__content span   { font-size: 0.85rem; color: var(--color-gray); }
 
+/*
+ * Badge ville — pastille colorée affichée à droite
+ * de l'étape pour signaler l'entrée dans une nouvelle ville.
+ * margin-left: auto le pousse naturellement à droite.
+ */
+.step__city-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0; /* ne se compresse pas si le texte est long */
+}
+
+/* Image parcours */
 .parcours-apercu__image {
   position: relative;
 }
@@ -415,6 +505,7 @@
   transform: translateY(-3px);
 }
 
+/* Tailles différentes selon le niveau de partenariat */
 .partenaires__grid--club        .partenaire-logo { min-width: 180px; min-height: 80px; }
 .partenaires__grid--prestige    .partenaire-logo { min-width: 140px; min-height: 65px; }
 .partenaires__grid--performance .partenaire-logo { min-width: 120px; min-height: 55px; }
@@ -422,16 +513,58 @@
 
 /* ---- RESPONSIVE HOME ---- */
 @media (max-width: 900px) {
+
+  /* Toutes les grilles 2 colonnes passent en 1 colonne */
   .presentation__container,
   .inscriptions__grid,
   .parcours-apercu__grid {
     grid-template-columns: 1fr;
   }
 
-  .stats__container { grid-template-columns: repeat(2, 1fr); }
-  .stats__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .stats__item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
+  /* Stats : 2 colonnes au lieu de 4 */
+  .stats__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats__item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  /* Séparateur droit uniquement sur les éléments impairs */
+  .stats__item:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
 
-  .hero__title { white-space: normal; font-size: clamp(1.8rem, 10vw, 3rem); }
-  .hero__actions { flex-direction: column; align-items: center; }
+  /* Hero : titre sur plusieurs lignes sur mobile */
+  .hero__title {
+    white-space: normal;
+    font-size: clamp(1.8rem, 10vw, 3rem);
+  }
+
+  /* Boutons hero empilés verticalement */
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Séparateurs dénivelé masqués quand les blocs s'empilent */
+  .denivele__separator {
+    display: none;
+  }
+
+  .parcours-apercu__denivele {
+    gap: 1.25rem;
+  }
+
+  /*
+   * Sur mobile les badges ville prennent trop de place
+   * sur une ligne. On les passe en dessous du contenu
+   * en cassant le flex row.
+   */
+  .step {
+    flex-wrap: wrap;
+  }
+
+  .step__city-badge {
+    margin-left: 2.5rem; /* aligne avec le texte, pas le dot */
+  }
 }

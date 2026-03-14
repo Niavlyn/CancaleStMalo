@@ -206,7 +206,7 @@
         <div class="presentation__text" data-animate="fade-left">
           <span class="section__tag">L'événement</span>
           <h2 class="section__title">L'un des plus beaux semi-marathons de France</h2>
-          <p>Le Semi Cancale Saint-Malo va célébrer sa <strong>37ᵉ édition</strong> le dimanche 23 août 2026. Classé parmi les plus beaux parcours de France, il réunit chaque année des milliers de coureurs passionnés.</p>
+          <p>Le Semi Cancale Saint-Malo va célébrer sa <strong>37ᵉ édition</strong> le dimanche 23 août 2026. Parmi les plus beaux parcours de France, il réunit chaque année des milliers de coureurs passionnés.</p>
           <p>Le parcours longe les <strong>paysages spectaculaires de la Côte d'Émeraude</strong>, de Cancale à Saint-Malo, en passant par Saint-Coulomb. Une expérience unique, exigeante et inoubliable.</p>
           <ul class="presentation__badges">
             <li class="badge">🥉 Label Bronze FFA</li>
@@ -218,7 +218,7 @@
         <div class="presentation__image" data-animate="fade-right">
           <!-- Placeholder image - à remplacer par une vraie photo -->
           <img 
-            src="/src/assets/photo_accueil.jpg" 
+            src="/src/assets/Affiche_Label.png" 
             alt="Coureurs sur la Côte d'Émeraude"
             loading="lazy"
           />
@@ -267,69 +267,121 @@
          PARCOURS : aperçu visuel
          ======================================== -->
     <section class="parcours-apercu section">
-      <div class="container">
+        <div class="container">
         <span class="section__tag">Le parcours</span>
-        <h2 class="section__title">Cancale → Saint-Malo</h2>
+        <h2 class="section__title">Cancale → Saint-Coulomb → Saint-Malo</h2>
+
+        <!-- Dénivelé mis en avant au-dessus des étapes -->
+        <div class="parcours-apercu__denivele" data-animate="fade-up">
+        <div class="denivele__item">
+            <span class="denivele__icon">⬆️</span>
+            <span class="denivele__value">+166 m</span>
+            <span class="denivele__label">Dénivelé positif</span>
+        </div>
+        <div class="denivele__separator">|</div>
+        <div class="denivele__item">
+            <span class="denivele__icon">⬇️</span>
+            <span class="denivele__value">−205 m</span>
+            <span class="denivele__label">Dénivelé négatif</span>
+        </div>
+        <div class="denivele__separator">|</div>
+        <div class="denivele__item">
+            <span class="denivele__icon">📍</span>
+            <span class="denivele__value">3 villes</span>
+            <span class="denivele__label">Traversées</span>
+        </div>
+        </div>
 
         <div class="parcours-apercu__grid">
 
-          <!-- Étapes du parcours -->
-          <div class="parcours-apercu__steps" data-animate="fade-left">
+        <!-- Étapes du parcours -->
+        <div class="parcours-apercu__steps" data-animate="fade-left">
+
+            <!-- CANCALE -->
             <div class="step">
-              <div class="step__dot step__dot--start"></div>
-              <div class="step__content">
+            <div class="step__dot step__dot--start"></div>
+            <div class="step__content">
                 <strong>Départ — Cancale</strong>
                 <span>Avenue de Scissy · 8h00</span>
-              </div>
+            </div>
+            <!-- Badge ville -->
+            <span class="step__city-badge">Cancale</span>
             </div>
             <div class="step__line"></div>
+
             <div class="step">
-              <div class="step__dot"></div>
-              <div class="step__content">
+            <div class="step__dot step__dot--landmark"></div>
+            <div class="step__content">
+                <strong>Pointe du Grouin</strong>
+                <span>Vue spectaculaire sur la baie</span>
+            </div>
+            </div>
+            <div class="step__line"></div>
+
+            <!-- SAINT-COULOMB -->
+            <div class="step">
+            <div class="step__dot step__dot--city"></div>
+            <div class="step__content">
                 <strong>Côte du Guesclin</strong>
                 <span>km 9 — premier dénivelé majeur</span>
-              </div>
+            </div>
+            <span class="step__city-badge">Saint-Coulomb</span>
             </div>
             <div class="step__line"></div>
+
             <div class="step">
-              <div class="step__dot"></div>
-              <div class="step__content">
-                <strong>Saint-Coulomb</strong>
-                <span>km 11 — ravitaillement</span>
-              </div>
-            </div>
-            <div class="step__line"></div>
-            <div class="step">
-              <div class="step__dot"></div>
-              <div class="step__content">
+            <div class="step__dot step__dot--landmark"></div>
+            <div class="step__content">
                 <strong>Côte du Lupin</strong>
                 <span>km 13 — vue sur la mer</span>
-              </div>
+            </div>
             </div>
             <div class="step__line"></div>
-            <div class="step">
-              <div class="step__dot step__dot--end"></div>
-              <div class="step__content">
-                <strong>Arrivée — Saint-Malo</strong>
-                <span>Esplanade Saint-Vincent · Remparts</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Image parcours -->
-          <div class="parcours-apercu__image" data-animate="fade-right">
-            <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" 
-              alt="Vue aérienne Côte d'Émeraude"
-              loading="lazy"
-            />
-            <a href="/src/pages/parcours.html" class="btn btn--primary parcours-apercu__btn">
-              Voir le parcours complet
-            </a>
-          </div>
+            <!-- SAINT-MALO -->
+            <div class="step">
+            <div class="step__dot step__dot--city"></div>
+            <div class="step__content">
+                <strong>Côte du Pont</strong>
+                <span>km 17 — entrée sur Saint-Malo</span>
+            </div>
+            <span class="step__city-badge">Saint-Malo</span>
+            </div>
+            <div class="step__line"></div>
+
+            <div class="step">
+            <div class="step__dot step__dot--landmark"></div>
+            <div class="step__content">
+                <strong>La Digue</strong>
+                <span>Dernière ligne droite face à la mer</span>
+            </div>
+            </div>
+            <div class="step__line"></div>
+
+            <div class="step">
+            <div class="step__dot step__dot--end"></div>
+            <div class="step__content">
+                <strong>Arrivée — Intra-Muros</strong>
+                <span>Esplanade Saint-Vincent · Au pied des remparts</span>
+            </div>
+            </div>
 
         </div>
-      </div>
+
+        <!-- Image parcours -->
+        <div class="parcours-apercu__image" data-animate="fade-right">
+            <img 
+            src="/src/assets/parcours.jpg" 
+            alt="Vue aérienne Côte d'Émeraude"
+            loading="lazy"
+            />
+            <a href="/src/pages/parcours.html" class="btn btn--primary parcours-apercu__btn">
+            Voir le parcours complet
+            </a>
+        </div>
+
+            </div>
+        </div>
     </section>
 
     <!-- ========================================
